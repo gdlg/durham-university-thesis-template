@@ -1,0 +1,201 @@
+
+% We are writing an article
+\documentclass[final]{durthesis}
+
+\def\Bodies{DU}
+\def\Funders{jlr}
+
+% Let’s use reasonable margins
+%\usepackage[left=40mm, right=20mm, top=20mm, bottom=20mm, includefoot, headheight=13.6pt]{geometry}
+
+\usepackage{setspace}
+%\onehalfspacing
+\doublespacing
+
+% Choose input and font mode
+% (mostly to get “special” UTF-8 characters work)
+\usepackage[T1]{fontenc}
+%\usepackage[utf8x]{inputenc}
+
+% Headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{.5pt}
+\makeatletter
+\renewcommand{\chaptermark}[1]{\markboth{\textsc{\@chapapp}\ \thechapter:\ #1}{}}
+\makeatother
+
+% Todo notes
+\usepackage[colorinlistoftodos]{todonotes}
+\setlength{\marginparwidth}{2cm}
+
+% Hyperlinks
+\usepackage[backref,pagebackref,pdfusetitle,colorlinks=true,linktocpage=true]{hyperref}
+\usepackage[all]{hypcap} % Get the figures hyperlinks right
+\usepackage{csquotes}
+
+\usepackage{soul}
+
+\usepackage{nicefrac}
+
+\usepackage[super]{nth}
+
+\usepackage[toc,section=chapter]{glossaries}
+\usepackage[automake]{glossaries-extra}
+
+\makeatletter
+\newcommand*{\glsplainhyperlink}[2]{%
+  \colorlet{currenttext}{.}% store current text color
+  \colorlet{currentlink}{\@linkcolor}% store current link color
+  \hypersetup{linkcolor=currenttext}% set link color
+  \hyperlink{#1}{#2}%
+  \hypersetup{linkcolor=currentlink}% reset to default
+}
+\let\@glslink\glsplainhyperlink
+\makeatother
+
+\usepackage{collcell}
+\makeatletter
+% Column type G hide the column
+\newcolumntype{G}{>{\collectcell\@gobble}c<{\endcollectcell}@{}}
+\makeatother
+
+% Useful shortcus
+\usepackage{xspace}
+%\newcommand{\etal}{\textit{et al}. }
+%\newcommand{\ie}{\textit{i}.\textit{e}., }
+%\newcommand{\eg}{\textit{e}.\textit{g}. }
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+
+\def\eg{\emph{e.g}\onedot} \def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot} \def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{c.f}\onedot} \def\Cf{\emph{C.f}\onedot}
+\def\etc{\emph{etc}\onedot} \def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\etal{\emph{et al}\onedot}
+\def\aka{\emph{a.k.a}\onedot}
+\makeatother
+
+% For useful symbols
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}} % A checkmark ✓
+
+% Maths
+\usepackage{amsmath,amssymb,cool,siunitx}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+
+\newcommand{\Entropy}{\,\mathrm{H}}
+\newcommand{\MutualInf}{\,\mathrm{MI}}
+
+\DeclareSIUnit\frame{frame}
+\DeclareSIUnit\mframe{\meter\per\frame}
+\DeclareSIUnit{\mph}{mph}
+
+\DeclareMathOperator{\ROI}{ROI}
+\DeclareMathOperator{\atan2}{atan2}
+\DeclareMathOperator{\arctan2}{arctan2}
+\DeclareMathOperator{\complexarg}{arg}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\DeclareMathOperator{\Q}{\mathbb{Q}}
+\DeclareMathOperator{\N}{\mathbb{N}}
+\DeclareMathOperator{\HH}{\mathbb{H}}
+
+
+% Drawings
+\usepackage{tikz,pgffor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{calc}
+\usetikzlibrary{matrix}
+\usepgflibrary{shapes.gates.logic}
+\usepgflibrary{shapes.gates.logic.IEC}
+\usetikzlibrary{positioning}
+
+\usepackage{tikz-3dplot}
+
+\usepackage{ifthen}
+
+\usepackage{xstring}
+\usepackage{textcomp}
+
+% Figures
+\usepackage{xcolor,graphicx}
+%\usepackage{subfig}
+\usepackage{subcaption}
+\usepackage{caption}
+
+% For subimport
+\usepackage{import}
+
+\usepackage{nomencl}
+\renewcommand{\nomname}{List of Abbreviations}
+\makenomenclature
+
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage[para]{threeparttable} 
+
+%\usepackage[numbers,sort&compress]{natbib}
+\usepackage{cite}
+
+\def\deg{$^\circ\ $}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\title{My Fancy Title Here}
+\author{John Doe}
+
+\input{abbreviations}
+
+\makeglossaries
+
+\begin{document}
+\frontmatter
+\maketitle
+
+\rhead{\thepage}
+\lhead{}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{\numberline{}Abstract}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis augue id purus tincidunt mollis. Nulla faucibus in nisi quis dignissim. Proin metus purus, pretium non aliquam eget, ullamcorper dapibus justo. Phasellus vitae malesuada libero. Donec ullamcorper mattis ligula, consequat imperdiet justo porta finibus. Proin lorem odio, feugiat pharetra rutrum sed, porttitor ut quam. Aliquam odio nibh, elementum sit amet velit eget, facilisis mattis nibh. Integer facilisis, nisi sit amet semper mattis, diam ex commodo mauris, nec suscipit nisl est sit amet arcu. Vivamus blandit porta augue. Suspendisse quis leo nec neque pharetra ornare. Ut egestas blandit justo ac suscipit. Sed maximus molestie est vel mattis. Pellentesque ac mauris vestibulum, viverra turpis ut, gravida libero. Vestibulum et augue at odio lobortis ullamcorper eu ac nisi. Cras suscipit eget ipsum sit amet vulputate.
+
+\begin{declaration}
+    The work in this thesis is based on research carried out within the Innovative Computing Group at the Department of Computer Science at Durham University, UK. No part of this thesis has been submitted elsewhere for any other degree or qualification and it is all the author's own work unless referenced to the contrary in the text.
+\end{declaration}
+
+\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{\numberline{}Acknowledgements}
+
+\vspace{-18pt}
+
+Here, goes my acknowledgements to all those awesome people.
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\printglossary[type=\glsxtrabbrvtype,title={\numberline{}List of Acronyms}]
+%\printunsrtglossary[type=\glsxtrabbrvtype,title={\numberline{}List of Acronyms}]
+
+\mainmatter
+\rhead{\thepage}
+\lhead{\nouppercase{\textsc{\leftmark}}}
+
+\input{example_chapter}
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{IEEEtran}
+\bibliography{biblio}
+
+\appendix
+%\listoftodos
+
+\end{document}
