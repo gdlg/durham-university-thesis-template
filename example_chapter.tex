@@ -9,6 +9,23 @@ Chapters and sections can be referenced like so, see Chapter~\ref{chap:example}.
 
 References goes into biblio.bib (mine is auto-generated using the Better Bibtex extension of Zotero, I really recommend it\footnote{\url{https://retorque.re/zotero-better-bibtex/}}) and can be used like so: Szeliski \etal \cite{SzeliskiComputerVisionAlgorithms2011} is a very good seminal book about computer vision.
 
+\begin{figure}
+    \centering
+    
+    \begin{subfigure}[b]{.45\textwidth}
+        \centering
+        Finding a good subfigure package which doesn’t conflict with something else can be hard. The subfigure environment worked the best for me.
+        \caption{Caption of the subfigure \label{fig:example:examplefigure:subfig1}}
+    \end{subfigure}
+    \begin{subfigure}[b]{.45\textwidth}
+        \centering
+        Another figure on the side of it. Imagine that this is an image instead of some text.
+        \caption{Caption of the subfigure \label{fig:example:examplefigure:subfig2}}
+    \end{subfigure}
+    
+    \caption{Main figure caption \label{fig:example:examplefigure}}
+\end{figure}
+
 \section{Lorem Ipsum}
 \label{sec:lorem_ipsum}
 
